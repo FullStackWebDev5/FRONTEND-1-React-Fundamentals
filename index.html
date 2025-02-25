@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Basics</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Using JSX
+    const App = () => {
+      return (
+        <div className='container'>
+          <h1 className='main-heading'>Welcome to React</h1>
+          <p className='para-1'>React is a JavaScript library for building user interfaces</p>
+          <button className='btn-1'>Click me!</button>
+        </div>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+
+    /*
+      // Using React and ReactDOM methods
+      const h1 = React.createElement('h1', { className: 'main-heading' }, 'Welcome to React')
+      const p = React.createElement('p', { className: 'para-1' }, 'React is a JavaScript library for building user interfaces')
+      const button = React.createElement('button', { className: 'btn-1' }, 'Click me!')
+      const div = React.createElement('div', { className: 'container' }, h1, p, button)
+
+      ReactDOM.createRoot(document.getElementById('root')).render(div)
+
+    /*
+      // DOM methods
+      const h1 = document.createElement('h1')
+      h1.classList.add('main-heading')
+      h1.innerText = 'Welcome to React'
+
+      const p = document.createElement('p')
+      p.classList.add('para-1')
+      p.innerText = 'React is a JavaScript library for building user interfaces'
+
+      const button = document.createElement('button')
+      button.classList.add('btn-1')
+      button.innerText = 'Click me!'
+
+      const div = document.createElement('div')
+      div.classList.add('container')
+      
+      div.append(h1, p, button)
+
+      document.getElementById('root').append(div)
+    */
+  </script>
+</body>
+</html>
+
+<!--
+  # React:
+    - JavaScript library to build website user interface
+    - Built by: Jordan Walke from Facebook (Meta) in the year 2013
+    - React.js is a declarative library ("What" to do, not "how" to do)
+
+    - Additional pointers:
+      - React uses "Virtual DOM" instead of DOM, and makes the changes in the actual DOM in the most optimized way possible (Which in turn makes the application faster)
+        - Diffing/ Reconcilation: Comparing Virtual DOM with DOM
+        - Reference image: https://media.geeksforgeeks.org/wp-content/uploads/20230725135348/Browser-DOM-Virtual-DOM-copy.webp
+      - Using React, we can create Single Page Application (SPA)
+
+    - Component:
+      - Building block of React code/ UI pieces of a web application
+      - Features:
+        - Components can be nested
+        - Components can be re-used
+      - Naming conventions: PascalCase
+      - Access the component in JSX:
+        - <Component1></Component1>
+        - <Component1 />
+
+
+    - JSX: JavaScript + XML
+      - Example:
+        <div>
+          <h1>React</h1>
+          <p>React is a JavaScript library for building user interfaces</p>
+        </div>
+      - Differences between HTML and JSX
+        - 'className' instead of 'class' because class is a reserved keyword in JavaScript
+      
+    - Babel: JavaScript compiler/ transpiler
+
+    - Build tool: (Create boilerplate folder for React app)
+      - create-react-app (deprecated as of Feb 2025)
+        - Setup:
+          - npx create-react-app my-app
+      - vite 
+
+    - Documentation:
+      - React
+        - https://react.dev/
+        - https://legacy.reactjs.org/
+        - Setup:
+          - Using CRA: https://www.npmjs.com/package/create-react-app
+      - Babel: 
+        - https://babeljs.io/
+-->
