@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Handling</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let fullName = ''
+
+    const handleSubmit = (event) => {
+      event.preventDefault() 
+    }
+    
+    const handleFullNameInput = (event) => {
+      fullName = event.target.value
+      root.render(<App />)
+    }
+
+    const App = () => {
+      return (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              placeholder="Enter your full name"
+              value={fullName}
+              onInput={handleFullNameInput}
+            />
+            <button type="submit">Submit</button>
+            <p>You have entered: {fullName}</p>
+          </form>
+        </div>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+  </script>
+</body>
+</html>
+
+<!--
+  # Form Handling:
+    - React uses 'Synthetic events' 
+      - Wrapper around native events in the browser
+      - React uses this to normalize events so that they have consistent properties across different browsers
+      - Using this, react also optimizes event handling 
+      - event.nativeEvent: Access the native browser event
+    - Type of components in React:
+      - Controlled component: 
+        - React controls the state (value) of that form element
+        - React has access to the state (value) at all times
+        - Two steps:
+          - Assign a state (variable) to the value of the form field
+          - Attach an event handler which will update the state (variable) value whenever the form field value changes
+      - Uncontrolled component (Ref): 
+        - React does not control the state (value) of that form element, instead it is accessed through a reference
+        - React can access to the state (value) only at the times needed
+    
+    - To prevent default behavior, use this native event property:
+      - preventDefault(): Prevent the default behaviour of the browser
+
+-->
