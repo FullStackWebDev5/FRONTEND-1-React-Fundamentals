@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Handling</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let displayMessage = 'MESSAGE'
+
+    const sayHi = () => {
+      displayMessage = 'Hi everyone!'
+      root.render(<App />)
+    }
+
+    const sayBye = () => {
+      displayMessage = 'Bye everyone!'
+      root.render(<App />)
+    }
+
+    const App = () => {
+      return (
+        <div>
+          <button onClick={sayHi}>Say Hi</button>
+          <button onClick={sayBye}>Say Bye</button>
+          <h1>{displayMessage}</h1>
+        </div>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+
+    /*
+      # React by default does not re-render
+        - Render: The process of displaying the component in the actual DOM in React (JSX -> Actual HTML)
+        - Re-render: The process of updating the component and displaying it in the actual DOM again
+        - To manually re-render, use the render() method again after performing variables updates
+        - A component re-renders automatically whenever the component's state/prop changes
+
+      # Futures:
+        - States and Props
+    */
+  </script>
+</body>
+</html>
