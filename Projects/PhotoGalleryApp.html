@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoGalleryApp</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const styles = {
+      container: {
+        textAlign: 'center',
+        width: '41em',
+        margin: '0 auto',
+        position: 'relative'
+      },
+      displayImg: {
+        width: '100%',
+        height: '400px'
+      },
+      imgDrawer: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        gap: '1em'
+      },
+      drawerImg: {
+        width: '6em',
+        height: '64px',
+        cursor: 'pointer'
+      },
+      leftArrowBtn: {
+        position: 'absolute',
+        top: '190px',
+        left: '1em',
+        fontSize: '2em',
+        opacity: '0.5',
+        cursor: 'pointer'
+      },
+      rightArrowBtn: {
+        position: 'absolute',
+        top: '190px',
+        right: '1em',
+        fontSize: '2em',
+        opacity: '0.5',
+        cursor: 'pointer'
+      }
+    }
+
+    const imgLinks = [
+      'https://plus.unsplash.com/premium_photo-1682141013747-5aed8665c154?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D',
+      'https://plus.unsplash.com/premium_photo-1661373704604-7c4d230c8928?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D',
+      'https://images.unsplash.com/photo-1629904853716-f0bc54eea481?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D',
+      'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D',
+      'https://plus.unsplash.com/premium_photo-1663040543387-cb7c78c4f012?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D',
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNvZnR3YXJlJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D'
+    ]
+    let displayImgIndex = 0
+
+    const switchImage = (index) => {
+      displayImgIndex = index
+      root.render(<App />)
+    }
+
+    const showNextImg = () => {
+      displayImgIndex += 1
+      if(displayImgIndex == imgLinks.length) {
+        displayImgIndex = 0
+      }
+      root.render(<App />)
+    }
+
+    const showPrevImg = () => {
+      displayImgIndex -= 1
+      if(displayImgIndex < 0) {
+        displayImgIndex = imgLinks.length - 1
+      }
+      root.render(<App />)
+    }
+
+    setInterval(() => {
+      displayImgIndex += 1
+      root.render(<App />)
+    }, 3000)
+
+    const App = () => {
+      return (
+        <div style={styles.container}>
+          <img 
+            src={imgLinks[displayImgIndex]} 
+            alt='display-img'
+            style={styles.displayImg}
+          />
+          <div 
+            style={styles.leftArrowBtn}
+            onClick={showPrevImg}
+          >
+            ◀️
+          </div>
+          <div 
+            style={styles.rightArrowBtn}
+            onClick={showNextImg}
+          >
+            ▶️
+          </div>
+          <div style={styles.imgDrawer}>
+            {
+              imgLinks.map((imgLink, index) => (
+                <img
+                  key={index}
+                  src={imgLink}
+                  alt={`drawer-img-${index}`}
+                  style={styles.drawerImg}
+                  onClick={() => switchImage(index)}
+                />
+              ))
+            }
+          </div>
+        </div>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+  </script>
+</body>
+</html>
