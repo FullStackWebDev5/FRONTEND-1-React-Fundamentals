@@ -12,30 +12,56 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    let fullName = ''
+    // # Controlled Component
+    // let fullName = ''
 
-    const handleSubmit = (event) => {
-      event.preventDefault() 
-    }
+    // const handleSubmit = (event) => {
+    //   event.preventDefault() 
+    // }
     
-    const handleFullNameInput = (event) => {
-      fullName = event.target.value
-      root.render(<App />)
-    }
+    // const handleFullNameInput = (event) => {
+    //   fullName = event.target.value
+    //   root.render(<App />)
+    // }
+
+    /* ----------------------- */
+    // # Uncontrolled Component
+    // let fullNameRef = React.createRef()
+
+    // const handleSubmit = (event) => {
+    //   event.preventDefault() 
+    //   console.log(fullNameRef.current.value)
+    // }
 
     const App = () => {
       return (
         <div>
-          <form onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              placeholder="Enter your full name"
-              value={fullName}
-              onInput={handleFullNameInput}
-            />
-            <button type="submit">Submit</button>
-            <p>You have entered: {fullName}</p>
-          </form>
+          {/* # Controlled Component */}
+          {/*
+            <form onSubmit={handleSubmit}>
+              <input 
+                type="text" 
+                placeholder="Enter your full name"
+                value={fullName}
+                onInput={handleFullNameInput}
+              />
+              <button type="submit">Submit</button>
+              <p>You have entered: {fullName}</p>
+            </form>
+          */}
+          {/* ---------------------- */}
+          
+          {/* # Uncontrolled Component */}
+          {/*
+            <form onSubmit={handleSubmit}>
+              <input 
+                type="text" 
+                placeholder="Enter your full name"
+                ref={fullNameRef}
+              />
+              <button type="submit">Submit</button>
+            </form>
+          */}
         </div>
       )
     }
@@ -50,21 +76,31 @@
   # Form Handling:
     - React uses 'Synthetic events' 
       - Wrapper around native events in the browser
-      - React uses this to normalize events so that they have consistent properties across different browsers
-      - Using this, react also optimizes event handling 
-      - event.nativeEvent: Access the native browser event
-    - Type of components in React:
+        - React uses this to normalize events so that they have consistent properties across different browsers
+        - Using this, react also optimizes event handling 
+        - syntheticEvent.nativeEvent: Access the native browser event from synthetic event
+    - Type of components in React forms:
       - Controlled component: 
         - React controls the state (value) of that form element
         - React has access to the state (value) at all times
-        - Two steps:
+        - This is done, to have a "single source of truth"
+        - Create a controlled component in two steps:
           - Assign a state (variable) to the value of the form field
           - Attach an event handler which will update the state (variable) value whenever the form field value changes
-      - Uncontrolled component (Ref): 
+      - Uncontrolled component (ref): 
         - React does not control the state (value) of that form element, instead it is accessed through a reference
-        - React can access to the state (value) only at the times needed
+        - React can access the state (value) only at the times when it is needed
+        - Syntax:
+          - const ref1 = React.createRef()
+            - createRef() creates a reference which can be added as a prop (attribute) to any JSX element
+          - <input ... ref={ref1} />
+          - ref1.current: Access to the DOM node 
     
-    - To prevent default behavior, use this native event property:
+    - To prevent default behavior of an event, use this native event property:
       - preventDefault(): Prevent the default behaviour of the browser
+
+    
+    # References:
+    - https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components
 
 -->
