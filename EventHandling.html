@@ -38,6 +38,13 @@
     root.render(<App />)
 
     /*
+      # Event Handling:
+        - Syntax
+          - Without argument
+            <button onClick={func1}>Button 1</button>
+          - With argument
+            <button onClick={() => func1(arg1)}>Button 1</button>
+
       # React by default does not re-render
         - Render: The process of displaying the component in the actual DOM in React (Converting JSX -> Actual HTML)
         - Re-render: The process of re-evaluating the component and displaying it in the actual DOM again
